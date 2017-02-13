@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.demo.web.creditcard.CreditCardBrowse"
+        focusComponent="creditCardsTable"
+        lookupComponent="creditCardsTable"
+        messagesPack="com.company.demo.web.creditcard">
+    <dsContext>
+        <groupDatasource id="creditCardsDs"
+                         class="com.company.demo.entity.CreditCard"
+                         view="_local">
+            <query>
+                <![CDATA[select e from demo$CreditCard e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="creditCardsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="creditCardsTable"
+                datasource="creditCardsDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="creditCardsTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="owner"/>
+                <column id="decryptedValue"/>
+            </columns>
+            <rows datasource="creditCardsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="creditCardsTable.create"/>
+                <button id="editBtn"
+                        action="creditCardsTable.edit"/>
+                <button id="removeBtn"
+                        action="creditCardsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>
